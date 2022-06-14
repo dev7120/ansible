@@ -1,1 +1,37 @@
 Ansible Notes
+
+ANSIBLE INTRODUCTION
+--an open source IT automation yool devlopment to configure multiple system,and more advanced IT tasks such as continous deployments / zero downtime rolling updates.
+--ansible is written in python. Ansible modules can be written in python , perl.
+--main goal is simplicity and ease of use 
+
+
+SETTING UP LAB
+1) 5 VM installed on virtual box and configuring the network(IPv4 & hostname) using nmtui and connecting them to same network.  
+
+
+ansible-c(ControlNode) -----------------> mhost1(managednode1)
+192.168.99.1/24				  192.168.10/24	 
+		       -----------------> mhost2(managednode2)
+					  192.168.20/24
+		       -----------------> mhost3(managednode3)
+					  192.168.30/24
+		       -----------------> mhost4(managednode4)
+					  192.168.40/24
+2) Configuring host file for name resolution on Contol node(ansible-c) usin vim editor in /etc/hosts
+  192.168.99.10 	mhost1.example.com 	mhost1
+  192.168.99.20 	mhost2.example.com 	mhost2
+  192.168.99.30  	mhost3.example.com 	mhost3
+  192.168.99.40  	mhost4.example.com 	mhost4
+
+3) INSTALLING ANSIBLE
+  yum install epel-release  -y  --- this will make epel repo available
+  yum install ansible   -y --- installing ansible
+  ansible--version --- displaying ansible version
+
+4) SETTING UP SSH key relationship for root
+    script---
+ for host in 1 2 3 4
+ do
+ ssh-copy-id mhost$host
+ done 
