@@ -11,13 +11,13 @@ SETTING UP LAB
 
 
 ansible-c(ControlNode) -----------------> mhost1(managednode1)
-192.168.99.1/24				  192.168.10/24	 
+192.168.99.1/24				  192.168.99.10/24	 
 		       -----------------> mhost2(managednode2)
-					  192.168.20/24
+					  192.168.99.20/24
 		       -----------------> mhost3(managednode3)
-					  192.168.30/24
+					  192.168.99.30/24
 		       -----------------> mhost4(managednode4)
-					  192.168.40/24
+					  192.168.99.40/24
 2) Configuring host file for name resolution on Contol node(ansible-c) usin vim editor in /etc/hosts
   192.168.99.10 	mhost1.example.com 	mhost1
   192.168.99.20 	mhost2.example.com 	mhost2
@@ -35,3 +35,36 @@ ansible-c(ControlNode) -----------------> mhost1(managednode1)
  do
  ssh-copy-id mhost$host
  done 
+
+5)ANSIBLE CONFIG FILE AT DIFF. LOCATIONS
+ touch /tmp/ansible.cfg
+
+ in--> /home/ansible
+ touch ansible.cfg
+ touch .ansible.cfg
+export ANSIBLE_CONFIG= /tmp/ansible.cfg
+ unset ANSIBLE_CONFIG
+
+that afterwards delete this using rm command
+
+6)ENTERY OF MANAGED HOSTS AS GROUP
+[mygroup1]
+mhost[1:4]
+
+ansible m* -m ping o
+
+
+7)GROUP VARIABLE AND HOST VARIABLE
+[mygroup1]
+mhost1 ansible_user=ansible  (this will not ping as we have given ansible user to root and not a user named ansible)
+mhost2
+
+[mygroup2]
+mhost[3:4]
+
+[mygroup2:vars]
+ansible_user=root   (this will work as we have given the user to root)
+
+ansible mygroup1 -m ping
+ansible mygroup2 -m ping
+
