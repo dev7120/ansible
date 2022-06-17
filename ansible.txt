@@ -101,3 +101,4 @@ ansible mhost1 -m command -a "cat/etc/hosts"
    78  vim /etc/ansible/ansible.cfg 
 
 test
+2nd testing
