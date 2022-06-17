@@ -68,3 +68,34 @@ ansible_user=root   (this will work as we have given the user to root)
 ansible mygroup1 -m ping
 ansible mygroup2 -m ping
 
+
+
+8)COMMANDS PERFORMED
+ansible mhost1 -m command -a "cat/etc/hosts"
+   52  ansible mhost1 -m command -a "cat /etc/hosts"
+   53  ansible mhost1 -m command -a "cat /etc/fstab"
+   54  shutdown now
+   55  ansible mhost1 -m lineinfile -a "path=/etc/ssh/sshd_config regexp='^#Port' line='Port 22' state=present"
+   56  ansible mhost1 -m command -a "cat /etc/ssh/sshd_config" 
+   57  history 
+   58  ansible mhost1 -m lineinfile -a "path=/etc/ssh/sshd_config insertafter='^Port' line='Port 555' state=present"
+   59  ansible mhost1 -m command -a "cat /etc/ssh/sshd_config" 
+   60  ansible mhost1 -m seport -a "port=555 setype=ssh_port_t statepresent"
+   61  ansible mhost1 -m seport -a "ports=555 setype=ssh_port_t statepresent"
+   62  ansible mhost1 -m seport -a "ports=555 setype=ssh_port_t state=present"
+   63  ansible mhost1 -m seport -a "ports=555 proto=tcp setype=ssh_port_t state=present"
+   64  ansible mhost1 -m firewalld -a "port=555/tcp state=enabled permanent=yes "
+   65  ansible mhost1 -m command -a "systemctl restart sshd" 
+   66  ansible mhost1 -m service -a "systemctl restart firewalld" 
+   67  ansible mhost1 -m command -a "systemctl restart firewalld" 
+   68  vim /etc/ssh/sshd_config 
+   69  vim /etc/ansible/ansible.cfg 
+   70  ansible -m ping 192.168.99.10
+   71  ansible mhost1 -m ping 
+   72  ssh 192.168.99.10
+   73  ansible mhost1 -m lineinfile -a "path=/etc/ssh/sshd_config regexp='^Port 5' line='' state=present"
+   74  ansible mhost1 -m lineinfile -a "path=/etc/ssh/sshd_config regexp='^Port 2' line='#Port 22' state=present"
+   75  ansible mhost1 -m command -a "systemctl restart sshd"
+   76  ansible mhost1 -m command -a "systemctl restart firewalld"
+   77  ansible mhost1 -m ping
+   78  vim /etc/ansible/ansible.cfg 
