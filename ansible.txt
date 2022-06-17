@@ -99,3 +99,5 @@ ansible mhost1 -m command -a "cat/etc/hosts"
    76  ansible mhost1 -m command -a "systemctl restart firewalld"
    77  ansible mhost1 -m ping
    78  vim /etc/ansible/ansible.cfg 
+
+test
